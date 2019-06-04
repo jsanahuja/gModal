@@ -1,0 +1,93 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<title>Raw JS Modal Demo</title>
+		<link href="https://fonts.googleapis.com/css?family=Nunito:400,600,700&display=swap" rel="stylesheet">
+		<link href="https://www.sowecms.com/demos/modal/assets/prism.css" rel="stylesheet" type="text/css" />
+		<link href="modal.min.css" rel="stylesheet" type="text/css" />
+		<style>
+			body{overflow:auto!important}body,p,blockquote{margin:0;padding:0}input,textarea,select{margin:0;padding:1px;font-size:100%;font-family:inherit}form,fieldset{margin:0;padding:0}fieldset{border:1px solid #000}legend{padding:0;color:#000}h1,h2,h3,h4,h5,h6{margin:0;padding:0;font-size:100%;font-weight:400}ul,ol,dl,li,dt,dd{margin:0;padding:0}select{padding:0}a img,iframe{border:0}a,a:link{text-decoration:none;color:d}a:visited{text-decoration:none}a:hover{text-decoration:none}a:active{text-decoration:none}iframe,frame{padding:0;margin:0}html,body{margin:0;padding:0;height:100%}pre{background:#fff;padding:1em}
+			body{font-family: 'Nunito', sans-serif;}
+
+
+			*{margin:0;padding:0;}
+			body{font-family:monospace;padding:0;margin:0;}
+			pre{border-radius:6px;padding:0.2em 0.5em;box-sizing:border-box;overflow-x:auto;}
+			pre strong{font-weight:bold;color:#00abff;}
+			h4.big{font-size:2em;}
+			a{color:#2955ff}
+			.m-t-1{margin-top:1em;}
+
+			/****/
+			*{box-sizing:border-box;}
+			h1{font-size:2.5em;margin-bottom:1em;}
+			h2{font-size:1.5em;}
+
+			.section_title{padding:3em 0em;text-align:center;color:#FFF;background:#000;}
+			.section_title:first-child{padding:2em 0em;}
+			.section_title:last-child{margin-bottom:0;}
+
+			.section_tabs{background:#555;padding:2em 2em 0 2em; text-align:center;outline:0;}
+			.section_tabs .button_tab{display:inline-block;padding:0.75em 1em;background:#cecece;border:1px #555 solid;cursor:pointer;}
+			.section_tabs .button_tab.active{background:#fff;border-bottom:1px #FFF solid;}
+			.section_tabs_contents{}
+			.section_tabs_contents .container{padding:1em 2em;border:1px #555 solid;border-top:0;}
+			.section_tabs_contents .content_tab{}
+			.section_tabs_contents .content_tab.hidden{display:none;}
+
+			.container{width:100%; max-width:1200px; margin:0 auto;}
+
+			.modal-wrapper{font-family: 'Nunito', sans-serif;}
+		</style>
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+	</head>
+	<body>
+		<div class="section_title">
+			<h1><a href="https://github.com/jsanahuja/modal" target="_blank">jsanahuja/modal</a></h1>
+			<h2>Modal without dependencies. Just JavaScript!</h2>
+		</div>
+		<div class="section_tabs">
+		</div>
+		<div class="section_tabs_contents">
+			<div class="container">
+				<button id="clickme">Show Confirm</button>
+			</div>
+		</div>
+		<script type="text/javascript" src="modal.js"></script>
+		<script type="text/javascript">
+			document.getElementById("clickme").onclick = function(){
+				var mymodal = new Modal({
+					title: "Do you like this library?",
+					body: "<center>Think twice before answer. If you say NO we will blacklist your IP in this website</center>",
+					buttons: [
+						{
+							content: "No",
+							classes: "modal-button-red",
+							bindKey: 27,
+							callback: function(modal){
+								console.log("You have said NO!!!!");
+								console.warn("Getting your ip...");
+								console.warn("Blacklisting your ip...");
+								console.error("Successfully blacklisted.");
+								modal.hide();
+							}
+						},{
+							content: "Yes",
+							classes: "modal-button-green",
+							bindKey: 13, /* no key! */
+							callback: function(modal){
+								console.log("We love you too <3!");
+								modal.hide();
+							}
+						}
+					],
+					close: {
+						closable: false,
+					}
+				});
+				mymodal.show();
+			}
+		</script>
+	</body>
+</html>
