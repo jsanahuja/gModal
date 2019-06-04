@@ -13,7 +13,8 @@ var Modal = (function(){
         title: "Default modal title",
         body: "This is the default body. It can include <strong>html</strong>. You can also leave it empty so we will hide it :).",
         buttons: [
-            /*{
+            /*No buttons by default.
+            {
                 content: "Cancel",
                 classes: "modal-button-gray",
                 // bindKey: 27, This would throw a warning because we're using the same key for closing.
@@ -34,10 +35,9 @@ var Modal = (function(){
         ],
         close: {
             closable: true,
-            location: "in", //in or out (side) the modal
-            bindKey: 27,    //Key 27 is already in use. This will throw a warning!!
+            location: "in",
+            bindKey: 27,
             callback: function(modal){
-                alert("You used the close functionality!");
                 modal.hide();
             }
         },
@@ -97,40 +97,44 @@ var Modal = (function(){
         }
     }
 
-    function Modal(options, id){
+    var Modal = function(options, id){
         this.id = id || Math.random().toString(36).substr(2);
         this.options = Object.assign({}, defaults, options);
         this.display = false;
         this.bindings = {};
 
-
-        this.onKeyPress = function(e){
-            if(!this.display)
-                return;
-            var keyCode = e.keyCode || e.which;
-            var keys = Object.keys(this.bindings);
-            for(var i = 0; i < keys.length; i++){
-                if(keys[i] == keyCode){
-                    e.preventDefault();
-                    e.stopPropagation();
-                    this.bindings[keys[i]](this);
-                    return false;
-                }
-            }
-        }
-
         this.bind = function(key, callback){
             if(typeof this.bindings[key] !== "undefined")
                 console.warn("Modal: Tried to bind the key "+ key +" twice. Overriding...");
             this.bindings[key] = callback;
-        }
+        };
 
         this.addKeyListener = function(){
+            window.currentModal = this;
             window.addEventListener("keydown", this.onKeyPress, false);
         };
 
         this.removeKeyListener = function(){
+            window.currentModal = undefined;
             window.removeEventListener("keydown", this.onKeyPress, false);
+        };
+
+        this.onKeyPress = function(e){
+            if(typeof window.currentModal !== "undefined" && window.currentModal instanceof Modal){
+                var _that = window.currentModal;
+                if(!_that.display)
+                    return;
+                var keyCode = e.keyCode || e.which;
+                var keys = Object.keys(_that.bindings);
+                for(var i = 0; i < keys.length; i++){
+                    if(keys[i] == keyCode){
+                        e.preventDefault();
+                        e.stopPropagation();
+                        _that.bindings[keys[i]](_that);
+                        return false;
+                    }
+                }
+            }
         };
 
         this.show = function(){
