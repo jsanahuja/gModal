@@ -4,23 +4,272 @@
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 		<title>Raw JS Modal Demo</title>
 		<link href="https://fonts.googleapis.com/css?family=Nunito:400,600,700&display=swap" rel="stylesheet">
+		<link href="https://www.sowecms.com/demos/modal/assets/prism.css" rel="stylesheet" type="text/css" />
 		<link href="modal.min.css" rel="stylesheet" type="text/css" />
 		<style>
 			body{overflow:auto!important}body,p,blockquote{margin:0;padding:0}input,textarea,select{margin:0;padding:1px;font-size:100%;font-family:inherit}form,fieldset{margin:0;padding:0}fieldset{border:1px solid #000}legend{padding:0;color:#000}h1,h2,h3,h4,h5,h6{margin:0;padding:0;font-size:100%;font-weight:400}ul,ol,dl,li,dt,dd{margin:0;padding:0}select{padding:0}a img,iframe{border:0}a,a:link{text-decoration:none;color:d}a:visited{text-decoration:none}a:hover{text-decoration:none}a:active{text-decoration:none}iframe,frame{padding:0;margin:0}html,body{margin:0;padding:0;height:100%}pre{background:#fff;padding:1em}
 			body{font-family: 'Nunito', sans-serif;}
-			body{height:1500px;}
+
+
+			*{margin:0;padding:0;}
+			body{font-family:monospace;padding:0;margin:0;}
+			pre{border-radius:6px;padding:0.2em 0.5em;box-sizing:border-box;overflow-x:auto;}
+			pre strong{font-weight:bold;color:#00abff;}
+			.section_code{padding: 1em 0em;background:#555;}
+			.section_code h4{width:100%;max-width:1200px;margin:0 auto;font-size:1.2em;color:#FFF;}
+			.section_code pre{width:100%;max-width:1200px;margin:0 auto;background:#777;color:#CCC;border:1px #555 solid;}
+			.info pre{background-color:#999;color:#EEE;}
+			.info pre strong{color:#00ffba;}
+			.instagram_feed{width:100%;max-width:1200px;margin:0 auto;overflow:hidden;}
+			.info{padding-bottom:2em;}
+			.info p{font-size: 1.2em;margin-bottom: 0.3em;}
+			h4.big{font-size:2em;}
+			a{color:#2955ff}
+			.m-t-1{margin-top:1em;}
+
+			/****/
+			*{box-sizing:border-box;}
+			h1{font-size:2.5em;margin-bottom:1em;}
+			h2{font-size:1.5em;}
+
+			.section_title{padding:3em 0em;text-align:center;color:#FFF;background:#000;}
+			.section_title:first-child{padding:2em 0em;}
+			.section_title:last-child{margin-bottom:0;}
+
+			.section_tabs{background:#555;padding:2em 2em 0 2em; text-align:center;outline:0;}
+			.section_tabs .button_tab{display:inline-block;padding:0.75em 1em;background:#cecece;border:1px #555 solid;cursor:pointer;}
+			.section_tabs .button_tab.active{background:#fff;border-bottom:1px #FFF solid;}
+			.section_tabs_contents{}
+			.section_tabs_contents .container{padding:1em 2em;border:1px #555 solid;border-top:0;}
+			.section_tabs_contents .content_tab{}
+			.section_tabs_contents .content_tab.hidden{display:none;}
+
+			.container{width:100%; max-width:1200px; margin:0 auto;}
+
+			.modal-wrapper{font-family: 'Nunito', sans-serif;}
 		</style>
 		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 	</head>
 	<body>
-		<button id="trigger">DEMO</button>
-		<script type="text/javascript">
-			document.getElementById("trigger").onclick = function(){
-				var modal = Modal();
-				modal.show();
+		<div class="section_title">
+			<h1><a href="https://github.com/jsanahuja/modal" target="_blank">jsanahuja/modal</a></h1>
+			<h2>Modal without dependencies. Just JavaScript!</h2>
+		</div>
+		<div class="section_tabs">
+			<div class="container">
+				<a href="javascript:void(0);" class="button_tab active" id="example1">Best code Example</a>
+				<a href="javascript:void(0);" class="button_tab" id="example2">Alert</a>
+				<a href="javascript:void(0);" class="button_tab" id="example3">Confirm</a>
+				<a href="javascript:void(0);" class="button_tab" id="example4">Large one</a>
+				<a href="javascript:void(0);" class="button_tab" id="example5">Without close Button</a>
+				<a href="javascript:void(0);" class="button_tab" id="example6">Confirm binded to Enter and Esc</a>
+			</div>
+		</div>
+		<div class="section_tabs_contents">
+			<div class="container">
+				<div id="example1_code" class="content_tab">
+<pre class="language-javascript"><code class="language-javascript">
+	
+	var mymodal = new Modal({
+		title: "This is the best code example Modal",
+		body: "This is example defines <strong>all</strong> the available configurations so shows the real power of this library",
+		buttons: [
+			{
+				content: "Cancel",
+				classes: "modal-button-gray",
+				bindKey: 27, /* Esc */
+				callback: function(modal){
+					console.log("You hace cancelled the modal!");
+					modal.hide();
+				}
+			},{
+				content: "Accept",
+				classes: "modal-button-blue",
+				bindKey: 13, /* Enter */
+				callback: function(modal){
+					console.log("You have accepted the modal!");
+					modal.hide();
+				}
 			}
+		],
+		close: {
+			closable: true,
+			location: "in", /* 'in' or 'out' (side) the modal */
+			/**
+				* Reusing the key 27 here would throw a warning.
+				* Button bindings have more priority and would override this.
+				*/
+			bindKey: false, 
+			callback: function(modal){
+				console.log("You have closed the modal!");
+				modal.hide();
+			}
+		},
+
+		/**
+			* Modal Events.
+			* Note that, by default, we destroy modal after hiding it.
+		**/
+		onShow:     function(modal){},
+		onHide:     function(modal){ modal.destroy(); },
+		onCreate:   function(modal){},
+		onDestroy:  function(modal){}
+	});
+	mymodal.show();
+</code></pre>
+					
+				</div>
+				<div id="example2_code" class="content_tab hidden">code2</div>
+				<div id="example3_code" class="content_tab hidden">code3</div>
+				<div id="example4_code" class="content_tab hidden">code4</div>
+				<div id="example5_code" class="content_tab hidden">code5</div>
+				<div id="example6_code" class="content_tab hidden">code6</div>
+			</div>
+		</div>
+		<script type="text/javascript" src="https://www.sowecms.com/demos/modal/assets/prism.js"></script>
+		<script type="text/javascript" src="modal.js"></script>
+		<script type="text/javascript">
+			(function(){
+				var default_example = document.getElementById("example1");
+
+				function getClasses(el){
+					return el.className.split(" ").filter(function(c){ return c.length > 0; });
+				}
+
+				function hasClass(el, className){
+					return getClasses(el).indexOf(className) >= 0;
+				}
+
+				function addClass(el, className){
+					if(!hasClass(el, className)){
+						el.className += " "+ className;
+					}
+				}
+
+				function removeClass(el, className){
+					if(hasClass(el, className)){
+						var classes = getClasses(el);
+						classes.splice(classes.indexOf(className), 1);
+						el.className = classes.join(" ");
+					}
+				}
+				
+				function disable_all(){
+					var elements = document.getElementsByClassName("button_tab");
+					for(var i = 0; i < elements.length; i++){
+						removeClass(elements[i], "active");
+					}
+					var elements = document.getElementsByClassName("content_tab");
+					for(var i = 0; i < elements.length; i++){
+						addClass(elements[i], "hidden");
+					}
+				}
+
+				function enable_element(e){
+					var tab = this || e.target || e.srcElement || e.toElement || default_example,
+						content = document.getElementById(tab.id + "_code");
+					disable_all();
+					addClass(tab, "active");
+					removeClass(content, "hidden");
+
+					switch(tab.id){
+						case 'example1':
+							run_example1();
+							break;
+						case 'example2':
+							run_example2();
+							break;
+						case 'example3':
+							run_example3();
+							break;
+						case 'example4':
+							run_example4();
+							break;
+						case 'example5':
+							run_example5();
+							break;
+						case 'example6':
+							run_example6();
+							break;
+					}
+				}
+
+				function run_example1(){
+					var mymodal = new Modal({
+						title: "This is the best code example Modal",
+						body: "This is example defines <strong>all</strong> the available configurations so shows the real power of this library",
+						buttons: [
+							{
+								content: "Cancel",
+								classes: "modal-button-gray",
+								bindKey: 27, /* Esc */
+								callback: function(modal){
+									console.log("You hace cancelled the modal!");
+									modal.hide();
+								}
+							},{
+								content: "Accept",
+								classes: "modal-button-blue",
+								bindKey: 13, /* Enter */
+								callback: function(modal){
+									console.log("You have accepted the modal!");
+									modal.hide();
+								}
+							}
+						],
+						close: {
+							closable: true,
+							location: "in", /* 'in' or 'out' (side) the modal */
+							/**
+							 * Reusing the key 27 here would throw a warning.
+							 * Button bindings have more priority and would override this.
+							 */
+							bindKey: false, 
+							callback: function(modal){
+								console.log("You have closed the modal!");
+								modal.hide();
+							}
+						},
+
+						/**
+						 * Modal Events.
+						 * Note that, by default, we destroy modal after hiding it.
+						**/
+						onShow:     function(modal){},
+						onHide:     function(modal){ modal.destroy(); },
+						onCreate:   function(modal){},
+						onDestroy:  function(modal){}
+					});
+					mymodal.show();
+				}
+
+				function run_example2(){
+					
+				}
+
+				function run_example3(){
+					
+				}
+
+				function run_example4(){
+					
+				}
+
+				function run_example5(){
+					
+				}
+
+				function run_example6(){
+					
+				}
+
+				document.getElementById("example1").onclick = enable_element;
+				document.getElementById("example2").onclick = enable_element;
+				document.getElementById("example3").onclick = enable_element;
+				document.getElementById("example4").onclick = enable_element;
+				document.getElementById("example5").onclick = enable_element;
+				document.getElementById("example6").onclick = enable_element;
+			})();
 		</script>
-		<!-- <script type="text/javascript" src="modal.js"></script> -->
-		<script type="text/javascript" src="modal.min.js"></script>
 	</body>
 </html>
