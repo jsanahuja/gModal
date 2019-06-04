@@ -104,7 +104,6 @@ var Modal = (function(){
         if(typeof options !== undefined && typeof options.close !== undefined){
             this.options.close = Object.assign({}, defaults.close, options.close);
         }
-        console.log(defaults, options, this.options);
         this.display = false;
         this.bindings = {};
 
