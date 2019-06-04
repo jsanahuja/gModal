@@ -232,7 +232,7 @@ var Modal = (function(){
                         button.innerHTML = this.options.buttons[i].content;
 
                     if(typeof this.options.buttons[i].callback === "undefined")
-                        this.options.buttons[i].callback = function(){};
+                        this.options.buttons[i].callback = function(modal){ modal.hide(); };
                     
                     //button click
                     button.modal = this;
