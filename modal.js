@@ -97,41 +97,41 @@ var Modal = (function(){
         }
     }
 
-    function onKeyPress(e){
-        if(!this.display)
-            return;
-        var keyCode = e.keyCode || e.which;
-        var keys = Object.keys(this.bindings);
-        for(var i = 0; i < keys.length; i++){
-            if(keys[i] == keyCode){
-                e.preventDefault();
-                e.stopPropagation();
-                this.bindings[keys[i]](this);
-                return false;
-            }
-        }
-    }
-
-    function bind(key, callback){
-        if(typeof this.bindings[key] !== "undefined")
-            console.warn("Modal: Tried to bind the key "+ key +" twice. Overriding...");
-        this.bindings[key] = callback;
-    }
-
-    function addKeyListener(){
-        this.addEventListener("keydown", onKeyPress, false);
-    }
-
-    function removeKeyListener(){
-        this.removeEventListener("keydown", onKeyPress, false);
-    }
-
-
     function Modal(options, id){
         this.id = id || Math.random().toString(36).substr(2);
         this.options = Object.assign({}, defaults, options);
         this.display = false;
         this.bindings = {};
+
+
+        this.onKeyPress = function(e){
+            if(!this.display)
+                return;
+            var keyCode = e.keyCode || e.which;
+            var keys = Object.keys(this.bindings);
+            for(var i = 0; i < keys.length; i++){
+                if(keys[i] == keyCode){
+                    e.preventDefault();
+                    e.stopPropagation();
+                    this.bindings[keys[i]](this);
+                    return false;
+                }
+            }
+        }
+
+        this.bind = function(key, callback){
+            if(typeof this.bindings[key] !== "undefined")
+                console.warn("Modal: Tried to bind the key "+ key +" twice. Overriding...");
+            this.bindings[key] = callback;
+        }
+
+        this.addKeyListener = function(){
+            window.addEventListener("keydown", this.onKeyPress, false);
+        };
+
+        this.removeKeyListener = function(){
+            window.removeEventListener("keydown", this.onKeyPress, false);
+        };
 
         this.show = function(){
             if(typeof this.wrapper !== "undefined"){
@@ -186,7 +186,7 @@ var Modal = (function(){
 
                 //close key binding
                 if(typeof this.options.close.bindKey === "number"){
-                    bind(this.options.close.bindKey, this.options.close.callback);
+                    this.bind(this.options.close.bindKey, this.options.close.callback);
                 }
                 
                 if(typeof this.options.close.location === "undefined" || this.options.close.location == "in"){
@@ -242,7 +242,7 @@ var Modal = (function(){
 
                     //button key binding
                     if(typeof this.options.buttons[i].bindKey !== "undefined"){
-                        bind(this.options.buttons[i].bindKey, this.options.buttons[i].callback);
+                        this.bind(this.options.buttons[i].bindKey, this.options.buttons[i].callback);
                     }
 
                     buttons.appendChild(button);
@@ -253,7 +253,7 @@ var Modal = (function(){
             this.wrapper.appendChild(dialog);
             document.body.appendChild(this.wrapper);
 
-            addKeyListener();
+            this.addKeyListener();
             this.options.onCreate(this);
         };
 
@@ -261,7 +261,7 @@ var Modal = (function(){
             if(typeof this.wrapper !== "undefined"){
                 document.body.removeChild(this.wrapper);
                 this.wrapper = undefined;
-                removeKeyListener();
+                this.removeKeyListener();
                 this.options.onDestroy(this);
             }
         };
