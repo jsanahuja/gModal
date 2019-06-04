@@ -72,7 +72,7 @@
 	
 	var mymodal = new Modal({
 		title: "This is the best code example Modal",
-		body: "This is example defines <strong>all</strong> the available configurations so shows the real power of this library",
+		body: "This is example defines &lt;strong&gt;all&lt;/strong&gt; the available configurations so shows the real power of this library",
 		buttons: [
 			{
 				content: "Cancel",
@@ -119,11 +119,80 @@
 </code></pre>
 					
 				</div>
-				<div id="example2_code" class="content_tab hidden">code2</div>
-				<div id="example3_code" class="content_tab hidden">code3</div>
-				<div id="example4_code" class="content_tab hidden">code4</div>
-				<div id="example5_code" class="content_tab hidden">code5</div>
-				<div id="example6_code" class="content_tab hidden">code6</div>
+				<div id="example2_code" class="content_tab hidden">
+<pre class="language-javascript"><code class="language-javascript">
+	var mymodal = new Modal({
+		title: "This is the alert example Modal",
+		body: "&lt;center&gt;You just clicked the Alert modal trigger!&lt;/center&gt;",
+		buttons: [
+			{
+				content: "Accept",
+				classes: "modal-button-blue",
+				bindKey: 13, /* Enter */
+				callback: function(modal){
+					console.log("You just accepted the Alert Modal");
+					modal.hide();
+				}
+			}
+		],
+		close: {
+			callback: function(modal){
+				console.log("You just closed the Alert Modal");
+				modal.hide();
+			}
+		}
+	});
+	mymodal.show();
+</code></pre>
+
+</code></pre>
+				</div>
+				<div id="example3_code" class="content_tab hidden">
+<pre class="language-javascript"><code class="language-javascript">
+	var mymodal = new Modal({
+		title: "Do you like this library?",
+		body: "&lt;center&gt;Think twice before answer. If you say NO we will blacklist your IP in this website&lt;/center&gt;",
+		buttons: [
+			{
+				content: "No",
+				classes: "modal-button-red",
+				bindKey: false, /* no key! */
+				callback: function(modal){
+					console.log("You have said NO!!!!");
+					console.warn("Getting your ip...");
+					console.warn("Blacklisting your ip...");
+					console.error("Successfully blacklisted.");
+					modal.hide();
+				}
+			},{
+				content: "Yes",
+				classes: "modal-button-green",
+				bindKey: false, /* no key! */
+				callback: function(modal){
+					console.log("We love you too &lt;3!");
+					modal.hide();
+				}
+			}
+		],
+		close: {
+			closable: false,
+		}
+	});
+	mymodal.show();
+</code></pre>
+				</div>
+				<div id="example4_code" class="content_tab hidden">
+<pre class="language-javascript"><code class="language-javascript">
+</code></pre>
+				</div>
+				<div id="example5_code" class="content_tab hidden">
+<pre class="language-javascript"><code class="language-javascript">
+</code></pre>
+				</div>
+				<div id="example6_code" class="content_tab hidden">
+<pre class="language-javascript"><code class="language-javascript">
+</code></pre>
+				</div>
 			</div>
 		</div>
 		<script type="text/javascript" src="https://www.sowecms.com/demos/modal/assets/prism.js"></script>
@@ -204,7 +273,7 @@
 								classes: "modal-button-gray",
 								bindKey: 27, /* Esc */
 								callback: function(modal){
-									console.log("You hace cancelled the modal!");
+									console.log("You have cancelled the modal!");
 									modal.hide();
 								}
 							},{
@@ -244,11 +313,61 @@
 				}
 
 				function run_example2(){
-					
+					var mymodal = new Modal({
+						title: "This is the alert example Modal",
+						body: "<center>You just clicked the Alert modal trigger!</center>",
+						buttons: [
+							{
+								content: "Accept",
+								classes: "modal-button-blue",
+								bindKey: 13, /* Enter */
+								callback: function(modal){
+									console.log("You just accepted the Alert Modal");
+									modal.hide();
+								}
+							}
+						],
+						close: {
+							callback: function(modal){
+								console.log("You just closed the Alert Modal");
+								modal.hide();
+							}
+						}
+					});
+					mymodal.show();
 				}
 
 				function run_example3(){
-					
+					var mymodal = new Modal({
+						title: "Do you like this library?",
+						body: "<center>Think twice before answer. If you say NO we will blacklist your IP in this website</center>",
+						buttons: [
+							{
+								content: "No",
+								classes: "modal-button-red",
+								bindKey: false, /* no key! */
+								callback: function(modal){
+									console.log("You have said NO!!!!");
+									console.warn("Getting your ip...");
+									console.warn("Blacklisting your ip...");
+									console.error("Successfully blacklisted.");
+									modal.hide();
+								}
+							},{
+								content: "Yes",
+								classes: "modal-button-green",
+								bindKey: false, /* no key! */
+								callback: function(modal){
+									console.log("We love you too <3!");
+									modal.hide();
+								}
+							}
+						],
+						close: {
+							closable: false,
+						}
+					});
+					mymodal.show();
 				}
 
 				function run_example4(){
