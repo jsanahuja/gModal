@@ -100,6 +100,11 @@ var Modal = (function(){
     var Modal = function(options, id){
         this.id = id || Math.random().toString(36).substr(2);
         this.options = Object.assign({}, defaults, options);
+        // this will fix options.close unwanted overrides
+        if(typeof options !== undefined && typeof options.close !== undefined){
+            this.options.close = Object.assign({}, defaults.close, options.close);
+        }
+        console.log(defaults, options, this.options);
         this.display = false;
         this.bindings = {};
 
