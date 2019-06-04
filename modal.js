@@ -6,17 +6,18 @@
  * 
  * @author Javier Sanahuja <bannss1@gmail.com>
  * 
+ * https://github.com/jsanahuja/modal
  */
 var Modal = (function(){
     var defaults = {
         title: "Default modal title",
-        body: "This is the default body. It can include <strong>html</strong> or leave it empty to be hidden.",
+        body: "This is the default body. It can include <strong>html</strong>. You can also leave it empty so we will hide it :).",
         buttons: [
-            {
+            /*{
                 content: "Cancel",
                 classes: "modal-button-gray",
-                bindKey: 27, //Escape. See https://keycode.info/
-                // bindKey: false,
+                // bindKey: 27, This would throw a warning because we're using the same key for closing.
+                bindKey: false,
                 callback: function(modal){
                     alert("You clicked CANCEL!");
                     modal.hide();
@@ -29,7 +30,7 @@ var Modal = (function(){
                     alert("You clicked ACCEPT!");
                     modal.hide();
                 }
-            }
+            }*/
         ],
         close: {
             closable: true,
@@ -55,6 +56,7 @@ var Modal = (function(){
                 throw new TypeError('Cannot convert undefined or null to object');
             }
     
+
             target = Object(target);
             for (var index = 1; index < arguments.length; index++) {
                 var source = arguments[index];
@@ -69,7 +71,7 @@ var Modal = (function(){
             return target;
         };
     }
-    
+
     /**
      * PRIVATE METHODS
      */
