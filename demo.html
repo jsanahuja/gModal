@@ -1,0 +1,26 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<title>Raw JS Modal Demo</title>
+		<link href="https://fonts.googleapis.com/css?family=Nunito:400,600,700&display=swap" rel="stylesheet">
+		<link href="modal.min.css" rel="stylesheet" type="text/css" />
+		<style>
+			body{overflow:auto!important}body,p,blockquote{margin:0;padding:0}input,textarea,select{margin:0;padding:1px;font-size:100%;font-family:inherit}form,fieldset{margin:0;padding:0}fieldset{border:1px solid #000}legend{padding:0;color:#000}h1,h2,h3,h4,h5,h6{margin:0;padding:0;font-size:100%;font-weight:400}ul,ol,dl,li,dt,dd{margin:0;padding:0}select{padding:0}a img,iframe{border:0}a,a:link{text-decoration:none;color:d}a:visited{text-decoration:none}a:hover{text-decoration:none}a:active{text-decoration:none}iframe,frame{padding:0;margin:0}html,body{margin:0;padding:0;height:100%}pre{background:#fff;padding:1em}
+			body{font-family: 'Nunito', sans-serif;}
+			body{height:1500px;}
+		</style>
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+	</head>
+	<body>
+		<button id="trigger">DEMO</button>
+		<script type="text/javascript">
+			document.getElementById("trigger").onclick = function(){
+				var modal = Modal();
+				modal.show();
+			}
+		</script>
+		<!-- <script type="text/javascript" src="modal.js"></script> -->
+		<script type="text/javascript" src="modal.min.js"></script>
+	</body>
+</html>
