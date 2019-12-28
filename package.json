@@ -1,0 +1,30 @@
+{
+  "name": "gModal",
+  "description": "A light modal (alert, confirm, prompt) implementation in raw/vanilla JS",
+  "homepage": "https://github.com/jsanahuja/gModal",
+  "version": "2.0.0",
+  "keywords": [
+    "gModal",
+    "modal",
+    "vanilla",
+    "alert",
+    "prompt"
+  ],
+  "author": {
+    "name": "Javier Sanahuja",
+    "email": "bannss1@gmail.com"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jsanahuja/gModal.git"
+  },
+  "license": "MIT",
+  "scripts": {
+    "dist": "grunt dist"
+  },
+  "devDependencies": {
+    "grunt": "^1.0.4",
+    "grunt-contrib-cssmin": "^3.0.0",
+    "grunt-node-minify": "^1.5.0"
+  }
+}

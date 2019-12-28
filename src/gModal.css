@@ -1,4 +1,16 @@
-body.gmodal-active{
+/**
+ * gModal
+ * A modal library made with raw js
+ * 
+ * @version 2.0.0
+ * 
+ * @license MIT
+ * 
+ * @author Javier Sanahuja <bannss1@gmail.com>
+ * 
+ * https://github.com/jsanahuja/gModal
+ */
+ body.gmodal-active{
     overflow:hidden !important;
 }
 .gmodal-wrapper{

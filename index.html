@@ -2,10 +2,10 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-		<title>Raw JS Modal Demo</title>
+		<title>Raw JS gModal Demo</title>
 		<link href="https://fonts.googleapis.com/css?family=Nunito:400,600,700&display=swap" rel="stylesheet">
-		<link href="https://www.sowecms.com/demos/modal/assets/prism.css" rel="stylesheet" type="text/css" />
-		<link href="modal.min.css" rel="stylesheet" type="text/css" />
+		<link href="https://www.sowecms.com/demos/gModal/assets/prism.css" rel="stylesheet" type="text/css" />
+		<link href="dist/gModal.min.css" rel="stylesheet" type="text/css" />
 		<style>
 			body{overflow:auto!important}body,p,blockquote{margin:0;padding:0}input,textarea,select{margin:0;padding:1px;font-size:100%;font-family:inherit}form,fieldset{margin:0;padding:0}fieldset{border:1px solid #000}legend{padding:0;color:#000}h1,h2,h3,h4,h5,h6{margin:0;padding:0;font-size:100%;font-weight:400}ul,ol,dl,li,dt,dd{margin:0;padding:0}select{padding:0}a img,iframe{border:0}a,a:link{text-decoration:none;color:d}a:visited{text-decoration:none}a:hover{text-decoration:none}a:active{text-decoration:none}iframe,frame{padding:0;margin:0}html,body{margin:0;padding:0;height:100%}pre{background:#fff;padding:1em}
 			body{font-family: 'Nunito', sans-serif;}
@@ -52,7 +52,7 @@
 	</head>
 	<body>
 		<div class="section_title">
-			<h1><a href="https://github.com/jsanahuja/modal" target="_blank">jsanahuja/modal</a></h1>
+			<h1><a href="https://github.com/jsanahuja/gModal" target="_blank">jsanahuja/gModal</a></h1>
 			<h2>Modal without dependencies. Just JavaScript!</h2>
 		</div>
 		<div class="section_tabs">
@@ -60,9 +60,8 @@
 				<a href="javascript:void(0);" class="button_tab active" id="example1">Best code Example</a>
 				<a href="javascript:void(0);" class="button_tab" id="example2">Alert</a>
 				<a href="javascript:void(0);" class="button_tab" id="example3">Confirm</a>
-				<a href="javascript:void(0);" class="button_tab" id="example4">Large one</a>
-				<a href="javascript:void(0);" class="button_tab" id="example5">Without close Button</a>
-				<a href="javascript:void(0);" class="button_tab" id="example6">Confirm binded to Enter and Esc</a>
+				<a href="javascript:void(0);" class="button_tab" id="example4">Prompt</a>
+				<a href="javascript:void(0);" class="button_tab" id="example5">Large one</a>
 			</div>
 		</div>
 		<div class="section_tabs_contents">
@@ -70,7 +69,7 @@
 				<div id="example1_code" class="content_tab">
 <pre class="language-javascript"><code class="language-javascript">
 	
-	var mymodal = new Modal({
+	var mymodal = new gModal({
 		title: "This is the best code example Modal",
 		body: "This is example defines &lt;strong&gt;all&lt;/strong&gt; the available configurations so shows the real power of this library",
 		buttons: [
@@ -121,7 +120,7 @@
 				</div>
 				<div id="example2_code" class="content_tab hidden">
 <pre class="language-javascript"><code class="language-javascript">
-	var mymodal = new Modal({
+	var mymodal = new gModal({
 		title: "This is the alert example Modal",
 		body: "&lt;center&gt;You just clicked the Alert modal trigger!&lt;/center&gt;",
 		buttons: [
@@ -149,7 +148,7 @@
 				</div>
 				<div id="example3_code" class="content_tab hidden">
 <pre class="language-javascript"><code class="language-javascript">
-	var mymodal = new Modal({
+	var mymodal = new gModal({
 		title: "Do you like this library?",
 		body: "&lt;center&gt;Think twice before answer. If you say NO we will blacklist your IP in this website&lt;/center&gt;",
 		buttons: [
@@ -183,20 +182,52 @@
 				</div>
 				<div id="example4_code" class="content_tab hidden">
 <pre class="language-javascript"><code class="language-javascript">
+	var mymodal = new gModal({
+		title: "Let's know you better",
+		body: "&lt;center&gt;&lt;p&gt;What is your name?&lt;/p&gt;&lt;input type='text' id='name'&gt;&lt;/center&gt;",
+		buttons: [{
+			content: "Continue",
+			classes: "gmodal-button-blue",
+			bindKey: 13, /* Enter */
+			callback: function(modal){
+				var name = document.getElementById("name").value;
+				name = name == "" ? "Mr. Unnamed" : name;
+				console.log("Welcome home "+ name);
+				modal.hide();
+			}
+		}],
+		close: {
+			closable: false,
+		}
+	});
+	mymodal.show();
 </code></pre>
 				</div>
 				<div id="example5_code" class="content_tab hidden">
 <pre class="language-javascript"><code class="language-javascript">
-</code></pre>
-				</div>
-				<div id="example6_code" class="content_tab hidden">
-<pre class="language-javascript"><code class="language-javascript">
+	var mymodal = new gModal({
+		title: "These are our terms and conditions you'll never read",
+		body: "&lt;p&gt;Lorem ipsum dolor ...",
+		buttons: [{
+			content: "I accept",
+			classes: "gmodal-button-blue",
+			bindKey: 13, /* Enter */
+			callback: function(modal){
+				console.log("Well, you accepted");
+				modal.hide();
+			}
+		}],
+		close: {
+			closable: false,
+		}
+	});
+	mymodal.show();
 </code></pre>
 				</div>
 			</div>
 		</div>
-		<script type="text/javascript" src="https://www.sowecms.com/demos/modal/assets/prism.js"></script>
-		<script type="text/javascript" src="modal.js"></script>
+		<script type="text/javascript" src="https://www.sowecms.com/demos/gModal/assets/prism.js"></script>
+		<script type="text/javascript" src="dist/gModal.min.js"></script>
 		<script type="text/javascript">
 			(function(){
 				var default_example = document.getElementById("example1");
@@ -257,14 +288,11 @@
 						case 'example5':
 							run_example5();
 							break;
-						case 'example6':
-							run_example6();
-							break;
 					}
 				}
 
 				function run_example1(){
-					var mymodal = new Modal({
+					var mymodal = new gModal({
 						title: "This is the best code example Modal",
 						body: "This is example defines <strong>all</strong> the available configurations so shows the real power of this library",
 						buttons: [
@@ -313,7 +341,7 @@
 				}
 
 				function run_example2(){
-					var mymodal = new Modal({
+					var mymodal = new gModal({
 						title: "This is the alert example Modal",
 						body: "<center>You just clicked the Alert modal trigger!</center>",
 						buttons: [
@@ -338,7 +366,7 @@
 				}
 
 				function run_example3(){
-					var mymodal = new Modal({
+					var mymodal = new gModal({
 						title: "Do you like this library?",
 						body: "<center>Think twice before answer. If you say NO we will blacklist your IP in this website</center>",
 						buttons: [
@@ -371,15 +399,45 @@
 				}
 
 				function run_example4(){
-					
+					var mymodal = new gModal({
+						title: "Let's know you better",
+						body: "<center><p>What is your name?</p><input type='text' id='name'></center>",
+						buttons: [{
+							content: "Continue",
+							classes: "gmodal-button-blue",
+							bindKey: 13, /* Enter */
+							callback: function(modal){
+								var name = document.getElementById("name").value;
+								name = name == "" ? "Mr. Unnamed" : name;
+								console.log("Welcome home "+ name);
+								modal.hide();
+							}
+						}],
+						close: {
+							closable: false,
+						}
+					});
+					mymodal.show();
 				}
 
 				function run_example5(){
-					
-				}
-
-				function run_example6(){
-					
+					var mymodal = new gModal({
+						title: "These are our terms and conditions you'll never read",
+						body: "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur hendrerit ultricies quam ut scelerisque. Aliquam quis dignissim massa, non malesuada nunc. Integer tincidunt turpis commodo enim commodo, ac finibus ante consequat. Pellentesque volutpat blandit arcu, sit amet elementum tortor interdum et. Etiam id tellus congue, consectetur lectus et, iaculis est. In hac habitasse platea dictumst. Ut tortor metus, iaculis id faucibus vel, rutrum ut risus. Nunc hendrerit nulla sed orci condimentum, sit amet vestibulum ipsum lobortis. Mauris id vehicula tortor, sed accumsan risus. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Nulla vestibulum elit ac vulputate condimentum.</p><p></p><p>Pellentesque suscipit egestas tortor, in tincidunt mi fermentum ut. Donec scelerisque ipsum a massa placerat, et maximus orci fermentum. Nunc posuere ornare risus, ac interdum velit consectetur a. Pellentesque efficitur est in tempor iaculis. Nunc porttitor turpis in metus faucibus, eu tincidunt urna pellentesque. Donec lobortis elementum elit vel egestas. Sed tempus mauris et aliquam elementum.</p><p></p><p>Duis sit amet nibh elit. Nunc eu purus eget tortor sollicitudin ultrices. Ut sagittis mauris justo. Morbi vestibulum lacus arcu, vitae ornare purus tincidunt quis. Donec vel velit eu erat fermentum efficitur ut eu mauris. Morbi efficitur ex vel ante rutrum, dapibus pellentesque eros posuere. Morbi id dapibus nisl. Suspendisse facilisis ligula sed tincidunt tempor. Duis quis mauris ligula. Nam in mauris sed quam tristique bibendum.</p><p></p><p>Sed lobortis eu mauris ut venenatis. Etiam cursus velit ut lacus imperdiet vulputate. Sed condimentum neque ut massa facilisis, non lacinia ipsum euismod. Ut id aliquam neque. Morbi id ipsum interdum urna mollis scelerisque sed malesuada est. Aenean scelerisque condimentum massa id commodo. Interdum et malesuada fames ac ante ipsum primis in faucibus. Sed lacinia venenatis faucibus. Integer nisl ipsum, posuere quis tristique sit amet, eleifend ut ipsum. Aliquam erat volutpat.</p><p></p><p>Sed mollis felis et turpis bibendum, et placerat risus rutrum. Praesent id commodo ante. Etiam et elit a nibh venenatis tempor. Sed eu nulla odio. Suspendisse pretium turpis eros, et cursus risus pharetra id. Proin odio sem, congue interdum placerat non, semper at nulla. Quisque vitae ornare ante. Nam ac tortor nunc. Quisque quam quam, dapibus eget dolor eget, tristique auctor ipsum. Etiam quis sem interdum, dignissim nisi ut, vehicula odio. Aenean vel condimentum nulla. Phasellus in sollicitudin tortor. Etiam vestibulum suscipit risus, id ultricies sapien ornare et.</p><p></p><p>Ut luctus, erat ac porta commodo, nibh risus porttitor ipsum, nec maximus tortor massa vel est. In efficitur magna quis mi imperdiet congue. Praesent sagittis vestibulum nulla, iaculis placerat eros aliquam at. Aliquam erat volutpat. Ut congue, leo non blandit ornare, magna nulla porta sem, at consectetur felis eros ut magna. Vestibulum non consequat nibh, et pretium metus. Proin mauris nibh, placerat non magna sed, blandit elementum ex. Duis non sapien eros. Morbi congue leo et rhoncus feugiat. Suspendisse odio felis, ultricies sed pellentesque at, porttitor a nisl. Donec ornare id tellus quis vestibulum. Praesent ornare sem tellus, non porta quam placerat a. Quisque a purus dictum, accumsan libero eget, ultrices nulla. Nam facilisis quam nec urna efficitur, et suscipit augue efficitur. Aliquam dolor risus, laoreet vel orci sit amet, dictum iaculis dolor. Etiam ullamcorper ut erat id convallis.</p>",
+						buttons: [{
+							content: "I accept",
+							classes: "gmodal-button-blue",
+							bindKey: 13, /* Enter */
+							callback: function(modal){
+								console.log("Well, you accepted");
+								modal.hide();
+							}
+						}],
+						close: {
+							closable: false,
+						}
+					});
+					mymodal.show();
 				}
 
 				document.getElementById("example1").onclick = enable_element;
@@ -387,7 +445,6 @@
 				document.getElementById("example3").onclick = enable_element;
 				document.getElementById("example4").onclick = enable_element;
 				document.getElementById("example5").onclick = enable_element;
-				document.getElementById("example6").onclick = enable_element;
 			})();
 		</script>
 	</body>

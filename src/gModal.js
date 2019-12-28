@@ -1,16 +1,18 @@
 /**
- * Modal
+ * gModal
  * A modal library made with raw js
  * 
- * @version 1.0
+ * @version 2.0.0
+ * 
+ * @license MIT
  * 
  * @author Javier Sanahuja <bannss1@gmail.com>
  * 
- * https://github.com/jsanahuja/modal
+ * https://github.com/jsanahuja/gModal
  */
-var Modal = (function(){
+var gModal = (function(){
     var defaults = {
-        title: "Default modal title",
+        title: "Default gModal title",
         body: "This is the default body. It can include <strong>html</strong>. You can also leave it empty so we will hide it :).",
         buttons: [
             /*No buttons by default.
@@ -97,7 +99,7 @@ var Modal = (function(){
         }
     }
 
-    var Modal = function(options, id){
+    var gModal = function(options, id){
         this.id = id || Math.random().toString(36).substr(2);
         this.options = Object.assign({}, defaults, options);
         // this will fix options.close unwanted overrides
@@ -109,7 +111,7 @@ var Modal = (function(){
 
         this.bind = function(key, callback){
             if(typeof this.bindings[key] !== "undefined")
-                console.warn("Modal: Tried to bind the key "+ key +" twice. Overriding...");
+                console.warn("gModal: Tried to bind the key "+ key +" twice. Overriding...");
             this.bindings[key] = callback;
         };
 
@@ -124,7 +126,7 @@ var Modal = (function(){
         };
 
         this.onKeyPress = function(e){
-            if(typeof window.currentModal !== "undefined" && window.currentModal instanceof Modal){
+            if(typeof window.currentModal !== "undefined" && window.currentModal instanceof gModal){
                 var _that = window.currentModal;
                 if(!_that.display)
                     return;
@@ -249,7 +251,7 @@ var Modal = (function(){
                     };
 
                     //button key binding
-                    if(typeof this.options.buttons[i].bindKey !== "undefined"){
+                    if(typeof this.options.buttons[i].bindKey === "number"){
                         this.bind(this.options.buttons[i].bindKey, this.options.buttons[i].callback);
                     }
 
@@ -278,5 +280,5 @@ var Modal = (function(){
         return this;
     }
 
-    return Modal;
+    return gModal;
 })();
