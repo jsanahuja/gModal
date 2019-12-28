@@ -1,7 +1,7 @@
-# Modal
+# GModal
 A vanilla/raw JS implementation of Modal. Light and dependency free library.
 
-[Full documentation and examples here](https://www.sowecms.com/demos/modal/ "documentation")
+[Full documentation and examples here](https://www.sowecms.com/demos/gmodal/ "documentation")
 
 ### Some examples
 An alert with accept and close button
@@ -10,5 +10,5 @@ An alert with accept and close button
 A confirm without close button.
 ![Example2](https://shurimages.com/u/KLDcR.jpg)
 
-Everything is fully customizable. Check [the documentation](https://www.sowecms.com/demos/modal/ "documentation") for more.
+Everything is fully customizable. Check the [docs](https://www.sowecms.com/demos/gmodal/ "documentation") for more.
  

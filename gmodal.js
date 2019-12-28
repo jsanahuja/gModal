@@ -16,7 +16,7 @@ var Modal = (function(){
             /*No buttons by default.
             {
                 content: "Cancel",
-                classes: "modal-button-gray",
+                classes: "gmodal-button-gray",
                 // bindKey: 27, This would throw a warning because we're using the same key for closing.
                 bindKey: false,
                 callback: function(modal){
@@ -25,7 +25,7 @@ var Modal = (function(){
                 }
             },{
                 content: "Accept",
-                classes: "modal-button-blue",
+                classes: "gmodal-button-blue",
                 bindKey: 13, //Enter. See https://keycode.info/
                 callback: function(modal){
                     alert("You clicked ACCEPT!");
@@ -143,8 +143,8 @@ var Modal = (function(){
 
         this.show = function(){
             if(typeof this.wrapper !== "undefined"){
-                addClass(this.wrapper, "modal-active");
-                addClass(document.body, "modal-active");
+                addClass(this.wrapper, "gmodal-active");
+                addClass(document.body, "gmodal-active");
                 this.display = true;
                 this.options.onShow(this);
             }
@@ -152,8 +152,8 @@ var Modal = (function(){
 
         this.hide = function(){
             if(typeof this.wrapper !== "undefined"){
-                removeClass(this.wrapper, "modal-active");
-                removeClass(document.body, "modal-active");
+                removeClass(this.wrapper, "gmodal-active");
+                removeClass(document.body, "gmodal-active");
                 this.display = false;
                 this.options.onHide(this);
             }
@@ -166,14 +166,14 @@ var Modal = (function(){
             var backdrop, dialog;
 
             this.wrapper = document.createElement("div");
-            this.wrapper.className = "modal-wrapper";
-            this.wrapper.id = "modal-wrapper-" + this.id;
+            this.wrapper.className = "gmodal-wrapper";
+            this.wrapper.id = "gmodal-wrapper-" + this.id;
 
             backdrop = document.createElement("div");
-            backdrop.className = "modal-backdrop";
+            backdrop.className = "gmodal-backdrop";
 
             dialog = document.createElement("div");
-            dialog.className = "modal-dialog";
+            dialog.className = "gmodal-dialog";
 
             if(typeof this.options.close.closable !== "undefined" && this.options.close.closable){
                 var close = document.createElement("a");
@@ -198,37 +198,37 @@ var Modal = (function(){
                 }
                 
                 if(typeof this.options.close.location === "undefined" || this.options.close.location == "in"){
-                    close.className = "modal-close-in";
+                    close.className = "gmodal-close-in";
                     dialog.appendChild(close);
                 }else{
-                    close.className = "modal-close-out";
+                    close.className = "gmodal-close-out";
                     backdrop.appendChild(close);
                 }
             }
 
             if(this.options.title != ""){
                 var title = document.createElement("div");
-                title.className = "modal-title";
+                title.className = "gmodal-title";
                 title.innerHTML = this.options.title;
                 dialog.appendChild(title);
             }
 
             if(this.options.body != ""){
                 var body = document.createElement("div");
-                body.className = "modal-body";
+                body.className = "gmodal-body";
                 body.innerHTML = this.options.body;
                 dialog.appendChild(body);
             }
 
             if(this.options.buttons.length > 0){
                 var buttons = document.createElement("div");
-                buttons.className = "modal-buttons";
+                buttons.className = "gmodal-buttons";
 
                 for(var i = 0; i < this.options.buttons.length; i++){
                     var button = document.createElement("a");
                     button.setAttribute("href", "javascript:void(0);");
 
-                    button.className = "modal-button";
+                    button.className = "gmodal-button";
                     if(typeof this.options.buttons[i].classes !== "undefined")
                         button.className += " " + this.options.buttons[i].classes;
 
