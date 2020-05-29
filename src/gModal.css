@@ -2,7 +2,7 @@
  * gModal
  * A modal library made with raw js
  * 
- * @version 2.0.0
+ * @version 2.1.0
  * 
  * @license MIT
  * 
@@ -90,7 +90,7 @@
     box-sizing:border-box;
 }
 .gmodal-body{
-    padding-bottom: 0.5em;
+    padding-bottom: 1em;
     overflow:auto;
     max-height:50%;
     box-sizing:border-box;
