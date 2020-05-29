@@ -11,12 +11,18 @@
  *
  * https://github.com/jsanahuja/gModal
  */
-var gModal = (function() {
+(function(root, factory) {
+    if (typeof define === "function" && define.amd) {
+        define([], factory);
+    } else if (typeof exports === "object") {
+        module.exports = factory();
+    } else {
+        root.gModal = factory();
+    }
+}(this, function() {
     var defaults = {
         title: '',
-        body:
-            'This is the default body. It can include <strong>html</strong>. ' +
-            'You can also leave it empty so we will hide it :).',
+        body: '',
         buttons: [
             /* No buttons by default.
                         {
@@ -57,32 +63,6 @@ var gModal = (function() {
         onDestroy: function(modal) {}
     };
 
-    /** Object.assign polyfill **/
-    if (typeof Object.assign != 'function') {
-        Object.assign = function(target) {
-            'use strict';
-            if (target == null) {
-                throw new TypeError('Cannot convert undefined or null to object');
-            }
-
-            target = Object(target);
-            for (var index = 1; index < arguments.length; index++) {
-                var source = arguments[index];
-                if (source != null) {
-                    for (var key in source) {
-                        if (Object.prototype.hasOwnProperty.call(source, key)) {
-                            target[key] = source[key];
-                        }
-                    }
-                }
-            }
-            return target;
-        };
-    }
-
-    /**
-         * PRIVATE METHODS
-         */
     function getClasses(el) {
         return el.className.split(' ').filter(function(c) {
             return c.length > 0;
@@ -107,7 +87,7 @@ var gModal = (function() {
         }
     }
 
-    var gModal = function(options, id) {
+    return function(options, id) {
         this.id = id || Math.random().toString(36).substr(2);
         this.options = Object.assign({}, defaults, options);
         // this will fix options.close unwanted overrides
@@ -144,7 +124,7 @@ var gModal = (function() {
                 var keyCode = e.keyCode || e.which;
                 var keys = Object.keys(_that.bindings);
                 for (var i = 0; i < keys.length; i++) {
-                    if (keys[i] === keyCode) {
+                    if (parseInt(keys[i]) === keyCode) {
                         e.preventDefault();
                         e.stopPropagation();
                         _that.bindings[keys[i]](_that);
@@ -300,8 +280,5 @@ var gModal = (function() {
         };
 
         this.create();
-        return this;
-    };
-
-    return gModal;
-})();
+    }
+}));

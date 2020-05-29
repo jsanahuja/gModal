@@ -14,13 +14,19 @@
     "name": "Javier Sanahuja",
     "email": "bannss1@gmail.com"
   },
+  "contributors": [
+    {
+      "name": "Cristian Sanahuja",
+      "email": "csanahuja10@gmail.com"
+    }
+  ],
   "repository": {
     "type": "git",
     "url": "https://github.com/jsanahuja/gModal.git"
   },
   "license": "MIT",
   "scripts": {
-    "dist": "grunt dist"
+    "build": "grunt dist"
   },
   "devDependencies": {
     "grunt": "^1.0.4",
