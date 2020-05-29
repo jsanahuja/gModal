@@ -7,12 +7,13 @@
  * @license MIT
  *
  * @author Javier Sanahuja <bannss1@gmail.com>
+ * @contributor csanahuja <csanahuja10@gmail.com>
  *
  * https://github.com/jsanahuja/gModal
  */
 var gModal = (function() {
     var defaults = {
-        title: 'Default gModal title',
+        title: '',
         body:
             'This is the default body. It can include <strong>html</strong>. ' +
             'You can also leave it empty so we will hide it :).',

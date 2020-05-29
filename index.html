@@ -62,6 +62,7 @@
 				<a href="javascript:void(0);" class="button_tab" id="example3">Confirm</a>
 				<a href="javascript:void(0);" class="button_tab" id="example4">Prompt</a>
 				<a href="javascript:void(0);" class="button_tab" id="example5">Large one</a>
+				<a href="javascript:void(0);" class="button_tab" id="example6">Only text</a>
 			</div>
 		</div>
 		<div class="section_tabs_contents">
@@ -224,6 +225,14 @@
 	mymodal.show();
 </code></pre>
 				</div>
+				<div id="example6_code" class="content_tab hidden">
+<pre class="language-javascript"><code class="language-javascript">
+	var mymodal = new gModal({
+		body: "&lt;p&gt;Lorem ipsum dolor ...",
+	});
+	mymodal.show();
+</code></pre>
+				</div>
 			</div>
 		</div>
 		<script type="text/javascript" src="https://www.sowecms.com/demos/gModal/assets/prism.js"></script>
@@ -287,6 +296,9 @@
 							break;
 						case 'example5':
 							run_example5();
+							break;
+						case 'example6':
+							run_example6();
 							break;
 					}
 				}
@@ -440,11 +452,19 @@
 					mymodal.show();
 				}
 
+				function run_example6(){
+					var mymodal = new gModal({
+						body: "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur hendrerit ultricies quam ut scelerisque. Aliquam quis dignissim massa, non malesuada nunc. Integer tincidunt turpis commodo enim commodo, ac finibus ante consequat. Pellentesque volutpat blandit arcu, sit amet elementum tortor interdum et. Etiam id tellus congue, consectetur lectus et, iaculis est. In hac habitasse platea dictumst. Ut tortor metus, iaculis id faucibus vel, rutrum ut risus. Nunc hendrerit nulla sed orci condimentum, sit amet vestibulum ipsum lobortis. Mauris id vehicula tortor, sed accumsan risus. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Nulla vestibulum elit ac vulputate condimentum.</p>",
+					});
+					mymodal.show();
+				}
+
 				document.getElementById("example1").onclick = enable_element;
 				document.getElementById("example2").onclick = enable_element;
 				document.getElementById("example3").onclick = enable_element;
 				document.getElementById("example4").onclick = enable_element;
 				document.getElementById("example5").onclick = enable_element;
+				document.getElementById("example6").onclick = enable_element;
 			})();
 		</script>
 	</body>
