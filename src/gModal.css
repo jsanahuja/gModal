@@ -7,6 +7,7 @@
  * @license MIT
  * 
  * @author Javier Sanahuja <bannss1@gmail.com>
+ * @contributor csanahuja <csanahuja10@gmail.com>
  * 
  * https://github.com/jsanahuja/gModal
  */
@@ -21,12 +22,13 @@
     right: 0;
     bottom: 0;
     left: 0;
+    z-index: 2000;
 }
 .gmodal-wrapper.gmodal-active{
     display:block;
 }
 .gmodal-backdrop{
-    z-index:999999998;
+    z-index: 2001;
     position:fixed;
     top: 0;
     right: 0;
@@ -36,7 +38,7 @@
     opacity: 0.5;
 }
 .gmodal-dialog{
-    z-index:999999999;
+    z-index: 2001;
     position: absolute;
     top: 2em;
     left: 0;
@@ -50,8 +52,8 @@
 }
 .gmodal-close-in, .gmodal-close-out{
     position:absolute;
-    right: 1em;
-    top: 1em;
+    right: 0.5em;
+    top: 0.5em;
     width: 32px;
     height: 32px;
     opacity: 0.5;
@@ -78,14 +80,17 @@
 .gmodal-close-in:after, .gmodal-close-out:after{
     transform: rotate(45deg);
 }
+.gmodal-dialog{
+    padding: 2em 3em 0;
+}
 .gmodal-title{
-    padding: 1em;
+    padding-bottom: 2em;
     text-align: center;
     font-size: 1.25em;
     box-sizing:border-box;
 }
 .gmodal-body{
-    padding: 1em;
+    padding-bottom: 0.5em;
     overflow:auto;
     max-height:50%;
     box-sizing:border-box;
