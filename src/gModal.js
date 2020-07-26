@@ -2,7 +2,7 @@
  * gModal
  * A modal library made with raw js
  *
- * @version 2.1.0
+ * @version 2.2.0
  *
  * @license MIT
  *
@@ -203,17 +203,31 @@
                 }
             }
 
-            if (this.options.title != '') {
+            if (
+                this.options.title instanceof Element ||
+                (typeof this.options.title === "string" && this.options.title != '')
+            ){
                 var title = document.createElement('div');
                 title.className = 'gmodal-title';
-                title.innerHTML = this.options.title;
+                if(this.options.title instanceof Element){
+                    title.appendChild(this.options.title);
+                }else{
+                    title.innerHTML = this.options.title;
+                }
                 dialog.appendChild(title);
             }
 
-            if (this.options.body != '') {
+            if(
+                this.options.body instanceof Element || 
+                (typeof this.options.body === "string" && this.options.body != '')
+            ){
                 var body = document.createElement('div');
                 body.className = 'gmodal-body';
-                body.innerHTML = this.options.body;
+                if(this.options.body instanceof Element){
+                    body.appendChild(this.options.body);
+                }else{
+                    body.innerHTML = this.options.body;
+                }
                 dialog.appendChild(body);
             }
 

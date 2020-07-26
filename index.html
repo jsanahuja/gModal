@@ -63,6 +63,7 @@
 				<a href="javascript:void(0);" class="button_tab" id="example4">Prompt</a>
 				<a href="javascript:void(0);" class="button_tab" id="example5">Large one</a>
 				<a href="javascript:void(0);" class="button_tab" id="example6">Only text</a>
+				<a href="javascript:void(0);" class="button_tab" id="example7">DOM</a>
 			</div>
 		</div>
 		<div class="section_tabs_contents">
@@ -233,6 +234,19 @@
 	mymodal.show();
 </code></pre>
 				</div>
+				<div id="example7_code" class="content_tab hidden">
+<pre class="language-javascript"><code class="language-javascript">
+	var title = document.createElement("p");
+	title.innerText = "DOM API Modal";
+	var body = document.createElement("p");
+	body.innerText = "This body was generated using the Javascript DOM API";
+	var mymodal = new gModal({
+		title: title,
+		body: body,
+	});
+	mymodal.show();
+</code></pre>
+				</div>
 			</div>
 		</div>
 		<script type="text/javascript" src="https://www.sowecms.com/demos/gModal/assets/prism.js"></script>
@@ -299,6 +313,9 @@
 							break;
 						case 'example6':
 							run_example6();
+							break;
+						case 'example7':
+							run_example7();
 							break;
 					}
 				}
@@ -458,6 +475,17 @@
 					});
 					mymodal.show();
 				}
+				function run_example7(){
+					var title = document.createElement("p");
+					title.innerText = "DOM API Modal";
+					var body = document.createElement("p");
+					body.innerText = "This body was generated using the Javascript DOM API";
+					var mymodal = new gModal({
+						title: title,
+						body: body,
+					});
+					mymodal.show();
+				}
 
 				document.getElementById("example1").onclick = enable_element;
 				document.getElementById("example2").onclick = enable_element;
@@ -465,6 +493,7 @@
 				document.getElementById("example4").onclick = enable_element;
 				document.getElementById("example5").onclick = enable_element;
 				document.getElementById("example6").onclick = enable_element;
+				document.getElementById("example7").onclick = enable_element;
 			})();
 		</script>
 	</body>
